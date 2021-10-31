@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-sm-2 col-md-3"></div>
+    <div class="col-sm-8 col-md-6">
+      <p class="display-4 text-center text-dark m-5">Update your Aadhaar Address here!</p>
+      <img src="https://uidai.gov.in/images/logo/aadhaar_english_logo.svg" class="d-block mx-auto" width=200px>
+      <form #ref="ngForm" (ngSubmit)="onChange(ref.value); ref.reset()" class="form mt-5" >
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"> Aadhaar Number </label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" name="Aadhaar" ngModel>
+        </div>
+        
+        <button type="submit" class="btn btn-primary d-block mx-auto" > Update Aadhaar Address </button>
+      </form>
+        
+  
+      <div  class="text-center" style="margin: 10px; padding: 10px; border: 2px solid red;">
+        <div *ngFor="let i of ans|keyvalue" >
+          <h3 *ngIf="i.value!=null && i.key!='_id'">{{i.key}}  :  {{i.value}}</h3>
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-sm-2 col-md-3">
+    </div>
+  </div>
