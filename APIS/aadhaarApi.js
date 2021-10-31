@@ -34,6 +34,7 @@ aadhaarApi.get("/getaadhaar/:obj",expressErrorHandler(async (req,res,next)=>{
         user.District=user.District.toLowerCase()
         user.Street=user.Street.toLowerCase()
         user.Area=user.Area.toLowerCase()
+        user.State=user.State.toLowerCase()
 
         if(user.VTC===user.SubDistrict && user.SubDistrict===user.District){
             user.SubDistrict="N/A";
@@ -44,6 +45,13 @@ aadhaarApi.get("/getaadhaar/:obj",expressErrorHandler(async (req,res,next)=>{
         }
         else if(user.District===user.SubDistrict){
             user.SubDistrict="N/A";
+        }
+        else if(user.District===user.VTC){
+            user.District="N/A";
+        }
+        
+        if(user.District===user.State){
+            user.District="N/A";
         }
 
         let str=user.Street.replace(/[^a-zA-Z ]/g,"");
@@ -58,7 +66,7 @@ aadhaarApi.get("/getaadhaar/:obj",expressErrorHandler(async (req,res,next)=>{
                 user.Street="N/A";                  
             }
             else{
-                user.Area="N/A";
+                user.Street="N/A";
             }
         }
         res.send({message:user})
